@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>理解在自定义组件上使用 v-model</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <!-- 理解v-model 可以在这个组件上完美地工作起来了必须: -->
+      <custom-input
+        v-bind:value="searchText"
+        v-on:input="searchText = $event"
+      ></custom-input>
+    </div>
+    <script>
+      //1).将其 value 特性绑定到一个名叫 value 的 prop 上;2).在其 input 事件被触发时，将新的值通过自定义的 input 事件抛出
+      Vue.component("custom-input", {
+        props: ["value"],
+        template: `
+    <input
+      v-bind:value="value"
+      v-on:input="$emit('input', $event.target.value)"
+    >
+  `
+      });
+      var app = new Vue({
+        el: "#app"
+      });
+    </script>
+  </body>
+</html>

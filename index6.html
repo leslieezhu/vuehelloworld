@@ -10,19 +10,26 @@
 
   <body>
     <div id="app">
-      <blog-post
-        v-for="post in posts"
-        v-bind:key="post.id"
-        v-bind:post="post"
-      ></blog-post>
+      <div :style="{ fontSize: postFontSize + 'em' }">
+        <!-- 方式一:在父级组件监听这个事件的时候,用$event 访问到被抛出的这个值。 -->
+        <blog-post
+          v-for="post in posts"
+          v-bind:key="post.id"
+          v-bind:post="post"
+          v-on:enlarge-text="postFontSize += $event"
+        ></blog-post>
+      </div>
     </div>
     <script>
-      //理解组件中的props属性的数组值
+      //理解组件模板中,使用事件抛出的值,在这里我们想让<blog-post> 组件决定它的文本要放大多少, 读作:自定义子模板中click抛出事件"enlarge-text"
       Vue.component("blog-post", {
         props: ["post"],
         template: `
     <div class="blog-post">
       <h3>{{ post.title }}</h3>
+      <button v-on:click="$emit('enlarge-text',0.1)">
+        Enlarge text
+      </button>
       <div v-html="post.content"></div>
     </div>
   `
