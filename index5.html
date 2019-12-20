@@ -12,17 +12,13 @@
     <div id="app">
       <div :style="{ fontSize: postFontSize + 'em' }">
         <!-- 自定义组件标签里有了代码 v-on:enlarge-text="postFontSize += 0.1" ，读作:父组件监听事件enlarge-text, 父级组件就会接收该事件并更新 postFontSize 的值。 -->
-        <blog-post
-          v-for="post in posts"
-          v-bind:key="post.id"
-          v-bind:post="post"
-          v-on:enlarge-text="postFontSize += 0.1"
-        ></blog-post>
+        <blog-post v-for="post in posts" v-bind:key="post.id" v-bind:post="post" v-on:enlarge-text="postFontSize += 0.1"></blog-post>
       </div>
     </div>
     <script>
       //理解组件和父组件之间的数据通信,这里是在自定义子组件中增加按钮事件,操作父组件中的变量:postFontSize
       //子组件通过调用内建的 $emit 方法 并传入事件名称:enlarge-text来触发一个事件
+      //即组件如何触发事件
       Vue.component("blog-post", {
         props: ["post"],
         template: `

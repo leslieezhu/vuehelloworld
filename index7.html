@@ -10,14 +10,12 @@
 
   <body>
     <div id="app">
-      <!-- 理解v-model 可以在这个组件上完美地工作起来了必须: -->
-      <custom-input
-        v-bind:value="searchText"
-        v-on:input="searchText = $event"
-      ></custom-input>
+      <!-- 语法之:默认可以访问vue的data成员 https://www.cnblogs.com/guangzan/p/11269005.html -->
+      <p>SearchText is: {{ searchText }}</p>
+      <custom-input v-model="searchText"></custom-input>
     </div>
     <script>
-      //1).将其 value 特性绑定到一个名叫 value 的 prop 上;2).在其 input 事件被触发时，将新的值通过自定义的 input 事件抛出
+      //vue内建方法$emit,设置需要监听的事件名称,
       Vue.component("custom-input", {
         props: ["value"],
         template: `
@@ -28,7 +26,10 @@
   `
       });
       var app = new Vue({
-        el: "#app"
+        el: "#app",
+        data: {
+          searchText: ""
+        }
       });
     </script>
   </body>

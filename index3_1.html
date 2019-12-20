@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <title>子定义组件基础</title>
+    <title>子定义组件基础,顺带vue中事件编程基本</title>
   </head>
 
   <body>
@@ -20,8 +20,7 @@
             count: 0
           };
         },
-        template:
-          '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
+        template: '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
       });
       var app = new Vue({
         el: "#app",

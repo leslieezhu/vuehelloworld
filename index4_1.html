@@ -10,23 +10,12 @@
 
   <body>
     <div id="app">
-      <blog-post
-        v-for="post in posts"
-        v-bind:key="post.id"
-        v-bind:title="post.title"
-        v-bind:content="post.content"
-        v-bind:publishedAt="post.publishedAt"
-        v-bind:comments="post.comments"
-      ></blog-post>
+      <blog-post v-for="post in posts" v-bind:key="post.id" v-bind:post="post"></blog-post>
     </div>
     <script>
-      // 定义一个名为 blog-post 的新组件,注意在这里必须定在new Vew之前
+      // 定义一个名为 blog-post 的新组件,注意在这里必须定在new Vew之前, 关键属性:props
       Vue.component("blog-post", {
-        data: function() {
-          return {
-            count: 0
-          };
-        },
+        props: ["post"],
         template: `
     <div class="blog-post">
       <h3>{{ post.title }}</h3>
