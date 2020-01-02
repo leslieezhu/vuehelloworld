@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>计算属性和侦听器-计算属性</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- https://cn.vuejs.org/v2/guide/computed.html#%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7 -->
+        <a href="https://cn.vuejs.org/v2/guide/computed.html#%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7">计算属性</a>
+        <div id="example">
+            <p>Original message: "{{ message }}"</p>
+            <p>Computed reversed message: "{{ reversedMessage }}"</p>
+        </div>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#example',
+            data: {
+                message: 'Hello'
+            },
+            computed: {
+                // 计算属性的 getter
+                reversedMessage: function () {
+                    // `this` 指向 vm 实例
+                    return this.message.split('').reverse().join('')
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

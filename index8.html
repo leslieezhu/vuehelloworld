@@ -1,81 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <title>理解动态组件,即component元素,实现不同组件之间进行动态切换</title>
-  </head>
 
-  <body>
-    <div id="dynamic-component-demo" class="demo">
-      <!-- 知识点: vue 元素的class绑值; 效果是vue会自动判断哪个是当前组件,并将当前组件赋值给这里的data的currentTab-->
-      <button
-        v-for="tab in tabs"
-        v-bind:key="tab.name"
-        v-bind:class="['tab-button', { active: currentTab.name === tab.name }]"
-        v-on:click="currentTab = tab"
-      >
-        {{ tab.name }}
-      </button>
-      <!-- Vue 的 <component> 元素加一个特殊的 is 特性来实现 -->
-      <component v-bind:is="currentTab.component" class="tab"></component>
-    </div>
-    <script>
-      var tabs = [
-        {
-          name: "Home",
-          component: {
-            template: "<div>Home component</div>"
-          }
-        },
-        {
-          name: "Posts",
-          component: {
-            template: "<div>Posts component</div>"
-          }
-        },
-        {
-          name: "Archive",
-          component: {
-            template: "<div>Archive component</div>"
-          }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <title>理解动态组件,即component元素,实现不同组件之间进行动态切换</title>
+</head>
+
+<body>
+  <div id="dynamic-component-demo" class="demo">
+    <!-- 知识点: vue 元素的class绑值; 效果是vue会自动判断哪个是当前组件,并将当前组件赋值给这里的data的currentTab-->
+    <button v-for="tab in tabs" v-bind:key="tab.name"
+      v-bind:class="['tab-button', { active: currentTab.name === tab.name }]" v-on:click="currentTab = tab">
+      {{ tab.name }}
+    </button>
+    <!-- Vue的内置API <component> 元素加一个特殊的 is 特性来实现,v-bind可以省略 -->
+    <component v-bind:is="currentTab.component" class="tab"></component>
+  </div>
+  <script>
+    var tabs = [
+      {
+        name: "Home",
+        component: {
+          template: "<div>Home component</div>"
         }
-      ];
-      //这里的关键属性currentTab
-      new Vue({
-        el: "#dynamic-component-demo",
-        data: {
-          tabs: tabs,
-          currentTab: tabs[0]
+      },
+      {
+        name: "Posts",
+        component: {
+          template: "<div>Posts component</div>"
         }
-      });
-    </script>
-    <style>
-      .demo {
-        width: 800px;
+      },
+      {
+        name: "Archive",
+        component: {
+          template: "<div>Archive component</div>"
+        }
       }
-      .tab-button {
-        padding: 6px 10px;
-        border-top-left-radius: 3px;
-        border-top-right-radius: 3px;
-        border: 1px solid #ccc;
-        cursor: pointer;
-        background: #f0f0f0;
-        margin-bottom: -1px;
-        margin-right: -1px;
+    ];
+    //这里的关键属性currentTab
+    new Vue({
+      el: "#dynamic-component-demo",
+      data: {
+        tabs: tabs,
+        currentTab: tabs[0]
       }
-      .tab-button:hover {
-        background: #e0e0e0;
-      }
-      .tab-button.active {
-        background: #e0e0e0;
-      }
-      .tab {
-        border: 1px solid #ccc;
-        padding: 10px;
-      }
-    </style>
-  </body>
+    });
+  </script>
+  <style>
+    .demo {
+      width: 800px;
+    }
+
+    .tab-button {
+      padding: 6px 10px;
+      border-top-left-radius: 3px;
+      border-top-right-radius: 3px;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      background: #f0f0f0;
+      margin-bottom: -1px;
+      margin-right: -1px;
+    }
+
+    .tab-button:hover {
+      background: #e0e0e0;
+    }
+
+    .tab-button.active {
+      background: #e0e0e0;
+    }
+
+    .tab {
+      border: 1px solid #ccc;
+      padding: 10px;
+    }
+  </style>
+</body>
+
 </html>
