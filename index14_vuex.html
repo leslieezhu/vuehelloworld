@@ -7,27 +7,71 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/vuex"></script>
-    <title>Vuex 是什么</title>
+    <title>10分钟精通vue+vuex开发</title>
 </head>
 
 <body>
     <div id="app">
+        <h1>{{info}}</h1>
+        <h1>{{count}}</h1>
+        <button @click="pressMe">点击我一次</button>
     </div>
     <script>
-        // 如果在模块化构建系统中，请确保在开头调用了 Vue.use(Vuex)
+        //可以把vuex的Store看作是所有数据的集合，具体怎么用？ 
+        //答：const一个Store 
         //来创建一个 store,提供一个初始 state 对象和一些 mutation
         //1.通过 store.commit 方法触发状态变更 store.commit('increment')
-        //2.通过 store.state 来获取状态对象 console.log(store.state.count) 
-        const store = new Vuex.Store({
+        //2.通过 store.state 来获取状态对象 console.log(store.state.count)
+        //其它： 如果在模块化构建系统中，请确保在开头调用了 Vue.use(Vuex),这里const store必须定义在new Vue之前
+        const store = new Vuex.Store({   //Store是一个类，所以S大写
             state: {
-                count: 0
+                count: 0  //思考，vue编程，怎样访问这个count变量,这里通过vue的原生计算属性computer
             },
-            mutations: {
-                increment(state) {
-                    state.count++
+            
+            getters:{  //介绍了原生的getters属性， 它起到过滤器的作用
+                counter(state){  //读作：定义一个函数，它接受一个参数，这里就是vuex中的state属性
+                    //return state.count +1
+                    return state.count
                 }
+            },
+            //编程需要：希望在页面上点击事件可以操作vuex中的数据，于是引入的mutations,mutations是同步方法， 相对于 actions属性
+            mutations: {
+                plusCount(state,num) {  //这里所有的函数默认都会接收这里state,并且这里接收另一个参数 num
+                    state.count += num
+                    //state.count++
+                }
+            },
+            actions:{
+
+
             }
+
+            
         })
+
+        new Vue({
+            el: '#app',
+            data() {
+                return {
+                    info: "Hello World !" //用于测试vue环境
+                }
+            },
+            computed:{  
+                count() {
+                    //return store.state.count
+                    return store.getters.counter //重构代码，演示和getters属性互动
+                }
+            },
+            methods: {
+                pressMe() {
+                    //alter("哈哈，你点击我我");
+                    //去调用stote里面 mutations
+                    store.commit('plusCount',10)
+                    //store.dispath('xxx',10)  //于是使用dispath方法去调用触发“异步”方法
+                }
+            },
+        })
+        
     </script>
 </body>
 
