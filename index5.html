@@ -20,7 +20,7 @@
   <script>
     //理解组件和父组件之间的数据通信,这里是在自定义子组件中增加按钮事件,操作父组件中的变量:postFontSize
     //子组件通过调用内建的 $emit 方法 并传入事件名称:enlarge-text来触发一个事件
-    //即组件如何触发事件
+    //即组件如何触发父级组件中定义的事件处理方法
     Vue.component("blog-post", {
       props: ["post"],
       template: `
