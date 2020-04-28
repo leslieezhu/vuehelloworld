@@ -21,7 +21,7 @@
       </div>
     </div>
     <script>
-      //理解组件模板中,使用事件抛出的值,在这里我们想让<blog-post> 组件决定它的文本要放大多少, 读作:自定义子模板中click抛出事件"enlarge-text"
+      //理解组件模板中,使用事件抛出的值,在这里我们想让<blog-post> 组件决定它的文本要放大多少, 读作:自定义子模板中click抛出事件"enlarge-text",接着,父组件实现监听此事件
       Vue.component("blog-post", {
         props: ["post"],
         template: `
