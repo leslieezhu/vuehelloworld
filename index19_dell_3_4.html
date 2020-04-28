@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3-4 实现todoList的删除功能,这一节有许多vue的核心思想，值得细细体会</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="root">
+    </div>
+      <input v-model="inputValue" />
+      <button @click="handleSubmit">提交</button>
+    </div>
+    <ul>
+      <todo-item v-for="(item,index) of list" :key="index" :content="item" :index="index" @delete="handleDelete"></todo-item>
+    </ul>
+  </div>
+  <script>
+    //每个Vue的组件又是一个vue的实例,于是它也可以定制自己的methods方法
+    Vue.component('todo-item',{
+      props: ['content','index'], //组件定义一个参数用于接收从外部传入的值,再定义参数，用于子组件接收下标
+      template: '<li @click="handleClick">{{content}}</li>',
+      methods: {
+        handleClick:function() {
+          this.$emit('delete',this.index) //子组件向外发布一个事件
+        }
+      }
+
+    })
+    //1.一个最外层的vue实例也有自己的模板，这里就是挂载点下的dom，对于这里的“根”实例，它的template是自己的挂载点，对应el：“#root”
+    new Vue({
+      el:"#root",
+      data: {
+        inputValue:'',
+        list:[]
+      },
+      methods: {
+        handleSubmit: function() {
+          this.list.push(this.inputValue)
+          this.inputValue = ''
+        },
+        handleDelete:function(index) {
+          this.list.splice(index,1)//实现元素删除功能，思考这个方法为什么可以接收参数
+        }
+
+      },
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3-2 todolist组件拆分（vue中开发组件的相关语法）</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="root">
+    </div>
+      <input v-model="inputValue" />
+      <button @click="handleSubmit">提交</button>
+    </div>
+    <ul>
+      <todo-item v-for="(item,index) of list" :key="index" :content="item"></todo-item>
+    </ul>
+  </div>
+  <script>
+    //Vue创建组件的语法,此处是全局组件
+    Vue.component('todo-item',{
+      props: ['content'], //组件定义一个参数用于接收从外部传入的值
+      template: '<li>{{content}}</li>'
+    })
+    // var TodoItem = {
+    //   template: '<li>{{}}</li>'
+    // }
+    new Vue({
+      el:"#root",
+      //相当于注册和声明
+      // components:{
+      //   ''
+      // }
+      data: {
+        inputValue:'',
+        list:[]
+      },
+      methods: {
+        handleSubmit: function() {
+          this.list.push(this.inputValue)
+          this.inputValue = ''
+        }
+      },
+    })
+  </script>
+</body>
+</html>

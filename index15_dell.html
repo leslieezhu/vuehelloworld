@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2-4 Vue中的属性绑定和双向数据绑定</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="root">
+    <div v-bind:title="title">hello world</div>
+  </div>
+   <!-- vue中想属性的绑定，即11行当前属性title绑定的是vue 数据项中key等于title的value绑定，即这里是hello world，意味着，在标签里面原属性值，就不在是字面值本身了，而化作了“表达式”
+   既然这个“值”，vue引擎已经将它解析称了表达式，于是，就有了在vue模板属性值中写js表达式的语法现象。
+   解释了：为什么可以在vue的模板标签里面的属性值写JS表示式的原因。 对应的指令简写式 :title 冒号语法，用于vue的标签属性的绑定效果 -->
+  <script>
+    new Vue({
+      el:"#root",
+      data: {
+        title : "this is hello world"
+      }
+    })
+  </script>
+</body>
+</html>

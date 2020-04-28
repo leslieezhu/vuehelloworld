@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2-6 v-if v-show v-for</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="root">
+    <div v-if="show">hello world</div>
+    <!-- v-if控制dom存在与否，v-show控制dom显示与否 -->
+    <button @click="handleClick">toggle</button>
+    <ul>
+      <li v-for="item of list" :key="item"></li>
+      <!-- 增加key值提高vue绚烂性能，但要求key值唯一 -->
+      <li v-for="(item,index) of list" :key="index"></li>
+      <!-- 扩展说了index作为key值会有问题，待查阅质料 -->
+    </ul>
+  </div>
+  <script>
+    new Vue({
+      el:"#root",
+      data: {
+       show:true,
+       list :[1,2,3]
+      },
+      methods: {
+        handleClick:function() {
+          this.show = !this.show;
+        }
+      },
+    })
+  </script>
+</body>
+</html>

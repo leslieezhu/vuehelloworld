@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2-5 Vue中的计算属性和侦听器</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="root">
+    姓：<input v-model="firstName" />
+    名：<input v-model="lastName" />
+    <div>{{fullName}}</div> <!--本质与核心 可以把fullName看作变量，或这里即将定义为计算属性，这个变量是由其它变量计算而成的 -->
+    <!-- fullName对应一个函数 -->
+    <!-- 扩展讲了vue中的计算属性性能比较高，仅当它依赖的变量发生改变，它的值才重新计算，否则计算属性将一直使用缓存 -->
+    <!-- 理解vue中侦听器语法,它的作用是侦听vue中某一数据的变化，如这里侦听变量firstName和lastName的“变化” -->
+    <div>{{count}}</div>
+    <!-- 监听器语法，是vue的一种原生机制，如当firstName或lastName任意一个变量发生改变，count加1，需求是程序可以监听这里其它变量的变化，当然vue即监听方法也可以建立计算属性的变化 -->
+  </div>
+   <!--  -->
+  <script>
+    new Vue({
+      el:"#root",
+      data: {
+        firstName:'',
+        lastName:'',
+        count:0 //演示监听器语法，定义一个变量，用于演示vue的侦听语法
+      },
+      computed: {
+        fullName: function() {
+          return this.firstName + ' ' + this.lastName
+        },
+        watch: {
+          firstName: function() {
+            this.count ++
+          },
+          lasttName: function() {
+            this.count ++
+          }
+        }
+
+      },
+    })
+  </script>
+</body>
+</html>
