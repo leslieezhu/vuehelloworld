@@ -20,10 +20,10 @@
     //每个Vue的组件又是一个vue的实例,于是它也可以定制自己的methods方法
     Vue.component('todo-item',{
       props: ['content','index'], //组件定义一个参数用于接收从外部传入的值,再定义参数，用于子组件接收下标
-      template: '<li @click="handleClick">{{content}}</li>',
+      template: '<li @click="handleClick">{{content}}</li>',//将子组件事件发布出去,实现让外部组件监听到此事件
       methods: {
         handleClick:function() {
-          this.$emit('delete',this.index) //子组件向外发布一个事件
+          this.$emit('delete',this.index) //子组件向外发布一个事件, 在外部标签中使用@delete标识符监听此事件, 即在外部,怎样告诉处理器监听哪个事件?
         }
       }
 
