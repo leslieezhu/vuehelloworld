@@ -1,5 +1,4 @@
-1. vuex 实践
+1. Vuex 实践方式
 
 2. ElementUI 实践
 
-3. Vuex 实践方式
