@@ -25,6 +25,7 @@ export default {
   //Vuex会到actions.js中匹配的方法, 这里使用 searchPositionHistory 进行关联
   methods: {
     setHandler () {
+      //先到action.js中调用对应函数
       this.$store.dispatch("searchPositionHistory", this.person ) //dispatch：含有异步操作,写法： this.$store.dispatch('mutations方法名',值)
     },                                                            //commit：同步操作，写法：this.$store.commit('mutations方法名',值) 
     getHandler () {
