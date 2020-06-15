@@ -4,6 +4,8 @@ import HelloWorld from '@/components/HelloWorld'
 import StorePage from '@/components/StorePage'
 import elementUIDemo from '@/components/ElementUIDemo'
 import VuexDemo1 from '@/components/Vuex_Demo1'
+import LocalFoldDemo from '@/components/LocalFold' //折叠
+import AxiosDemo from '@/components/AxiosDemo' 
 
 Vue.use(Router)
 
@@ -28,6 +30,16 @@ export default new Router({
       path: '/elementUI/demo',
       name: 'elementUIDemo',
       component: elementUIDemo
+    },
+    {
+      path: '/demo/LocalFold', 
+      name: 'LocalFoldDemo',
+      component: LocalFoldDemo
+    },
+    {
+      path: '/demo/Axios', 
+      name: 'AxiosDemo',
+      component: AxiosDemo
     },
   ]
 })

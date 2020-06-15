@@ -18,6 +18,16 @@
           <div>elementUIDemo</div>
         </router-link>
       </li>
+      <li>
+        <router-link to="/demo/LocalFold">
+          <div>折叠Demo</div>
+        </router-link>
+      </li>
+      <li>
+        <router-link to="/demo/Axios">
+          <div>Axios实践</div>
+        </router-link>
+      </li>
     </ul>
     <ul>
       <li>
@@ -25,7 +35,6 @@
           Core Docs
         </a>
       </li>
-     
     </ul>
     <h2>Ecosystem</h2>
     <ul>
