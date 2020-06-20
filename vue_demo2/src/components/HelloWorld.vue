@@ -28,6 +28,11 @@
           <div>Axios实践</div>
         </router-link>
       </li>
+      <li>
+        <router-link to="/demo/SvgDemo">
+          <div>Svg实践</div>
+        </router-link>
+      </li>
     </ul>
     <ul>
       <li>

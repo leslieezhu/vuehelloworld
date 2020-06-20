@@ -16,6 +16,9 @@ Vue.use(ElementUI);
 import loading from '@/utils/loading' // 引入自定义插件 loading.js 
 Vue.use(loading) // 编程模式: 将loading注册给vue,目的全局使用loading,参考loading.js//是Vue自定义插件编程模式, 为了可以使用use方法,果然在它的代码内实现了install方法
 
+//Svg实践
+import './icons'
+
 /* eslint-disable no-new */
 var vm = new Vue({
   el: '#app',
