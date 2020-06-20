@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <script>
+    //closure	英[ˈkləʊʒə(r)] (永久的) 停业，关闭; 倒闭; (路或桥的) 暂时封闭; 英文含义“关闭，封闭”
+    /*读代码，角度一：定义端： 在function 内定义再定义一个函数，如匿名内部函数， 外部函数的返回值，返回这个函数，这个内部函数访问了外部函数的某一变量 */
+    /*为什么说下面的代码产生了闭包*/
+    function funA() {
+      var a = 10;
+      return function () {
+        alert(a); //当函数可以记住并访问所在的词法作用域时，就产生了闭包 （你不知道的JavaScript）。这里访问了父级函数的中的变量a，产生了“闭包”的条件, 之后它的引用就叫作闭包。
+      };
+    }
+    var b = funA();
+    b(); //1.效果是b访问到了定义在函数funA中的变量;
+
+    //例子2：
+    //形式一：直接传递，将内部函数(如下面baz)直接传递给外部函数（bar）， 那么那个内部函数的引用，无论在何处执行，都产生了闭包，闭包的效果是什么？
+    function foo() {
+      var a = 2;
+      function baz() {
+        console.log(a);
+      }
+      bar(baz); //对函数类型(baz)进行值的传递
+    }
+    function bar(fn) {
+      fn(); // 闭包产生了
+    }
+
+    //例子3
+    //形式二：间接传递，如下面，将内部函数对象赋值给外部变量，接着将这个变量传递给另一个函数（bar）
+    var fn;
+    function foo() {
+      var a = 2;
+      function baz() {
+        console.log(a);
+      }
+      fn = baz; //对函数类型进行值得传递
+    }
+    function bar(fn) {
+      fn(); //闭包产生了
+    }
+    foo();
+    bar();
+
+    //定时器的例子
+    function wait(message) {
+      setTimeout(function timer() {
+        /*角度二：调用端， */ console.log(message);
+      }, 1000);
+    }
+    wait("hello 闭包"); //wait使得内部函数的作用域的引用得以保持
+
+    /*思考JS中设计闭包的效果、目的、作用*/
+    function doSomeing(selector, doWhat) {
+      $(selector).onClick(function () {
+        //click事件处理函数保持了对doSomeing的作用域的引用。当click事件发生时，闭包也产生了，接着,通过被闭包的函数，
+        console.log(doWhat);
+      });
+    }
+    doSomeing("#dom1", "dowhat");
+    doSomeing("#dom2", "dowhat2");
+    //所谓JS中常见的，IIFE模式（立即执行函数）
+    var a = 2;
+    (function () {
+      console.log(a); //2
+    })();
+  </script>
+  <body></body>
+</html>
