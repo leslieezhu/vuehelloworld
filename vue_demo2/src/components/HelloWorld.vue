@@ -9,8 +9,28 @@
         </router-link>
       </li>
       <li>
+        <router-link to="/demo/two">
+          <div>StoreDemo_1</div>
+        </router-link>
+      </li>
+      <li>
         <router-link to="/elementUI/demo">
           <div>elementUIDemo</div>
+        </router-link>
+      </li>
+      <li>
+        <router-link to="/demo/LocalFold">
+          <div>折叠Demo</div>
+        </router-link>
+      </li>
+      <li>
+        <router-link to="/demo/Axios">
+          <div>Axios实践</div>
+        </router-link>
+      </li>
+      <li>
+        <router-link to="/demo/SvgDemo">
+          <div>Svg实践</div>
         </router-link>
       </li>
     </ul>
@@ -18,27 +38,6 @@
       <li>
         <a href="https://vuejs.org" target="_blank">
           Core Docs
-        </a>
-      </li>
-      <li>
-        <a href="https://forum.vuejs.org" target="_blank">
-          Forum
-        </a>
-      </li>
-      <li>
-        <a href="https://chat.vuejs.org" target="_blank">
-          Community Chat
-        </a>
-      </li>
-      <li>
-        <a href="https://twitter.com/vuejs" target="_blank">
-          Twitter
-        </a>
-      </li>
-      <br>
-      <li>
-        <a href="http://vuejs-templates.github.io/webpack/" target="_blank">
-          Docs for This Template
         </a>
       </li>
     </ul>

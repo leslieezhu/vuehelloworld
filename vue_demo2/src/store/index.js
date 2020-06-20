@@ -21,7 +21,7 @@ const state = func.local.get() || {
 //   searchPositionHistory: {}
 // }
 //执行getter.js 中的
-//Vuex 需要安装:npm install --save vuex
+//Vuex 需要安装:npm install --save vuex,vuex的核心概念: State,Getter,Mutation,Action,Module
 //getters 必须是一个 object
 export default new Vuex.Store({
   state,
