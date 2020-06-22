@@ -7,6 +7,7 @@ import VuexDemo1 from '@/components/Vuex_Demo1'
 import LocalFoldDemo from '@/components/LocalFold' //折叠
 import AxiosDemo from '@/components/AxiosDemo' 
 import SvgDemo from '@/components/SvgDemo'
+import SyncDemo from '@/components/SyncDemo'
 
 Vue.use(Router)
 
@@ -46,6 +47,11 @@ export default new Router({
       path: '/demo/SvgDemo', 
       name: 'SvgDemo',
       component: SvgDemo
+    },
+    {
+      path: '/demo/SvgDemo', 
+      name: 'Sync',
+      component: SyncDemo
     },
   ]
 })
