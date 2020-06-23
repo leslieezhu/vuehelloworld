@@ -6,8 +6,7 @@
   </div>
 </template>
 <script>
-//vue 修饰符sync的功能是：当一个子组件改变了一个 prop 的值时，这个变化也会同步到父组件中所绑定。
-//说白了他就是子组件改变父组件data的一种方法
+//组件属性(show)的改变,同步到父组件的data,父组件的data值的改变也可以同步到子组件的属性,即父组件与子组件属性值之间的通信
 import Vue from "vue";
 Vue.component("myComponent", {
   template: `<div v-if="show">
@@ -17,7 +16,7 @@ Vue.component("myComponent", {
   props: ["show"],
   methods: {
     closeDiv() {
-      this.$emit("update:show", false); //$emit可以将更新组件属性的事件发布出去， 触发 input 事件，并传入新值
+      this.$emit("update:show", false); //效果是将子组件的事件发布出去,这里将closeDiv事件发布, 更新组件内部属性show,并传入新值"false"
     }
   }
 });
