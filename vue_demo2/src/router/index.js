@@ -49,7 +49,7 @@ export default new Router({
       component: SvgDemo
     },
     {
-      path: '/demo/SvgDemo', 
+      path: '/demo/SyncDemo', 
       name: 'Sync',
       component: SyncDemo
     },

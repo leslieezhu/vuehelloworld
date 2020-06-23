@@ -33,6 +33,11 @@
           <div>Svg实践</div>
         </router-link>
       </li>
+      <li>
+        <router-link to="/demo/SyncDemo">
+          <div>Sync实践</div>
+        </router-link>
+      </li>
     </ul>
     <ul>
       <li>
