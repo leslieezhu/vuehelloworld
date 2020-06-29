@@ -16,7 +16,7 @@ Vue.component("myComponent", {
   props: ["show"],
   methods: {
     closeDiv() {
-      this.$emit("update:show", false); //效果是将子组件的事件发布出去,这里将closeDiv事件发布, 更新组件内部属性show,并传入新值"false"
+      this.$emit("update:show", false); //效果是将子组件更新组件内部属性show,并传入新值"false", update是vue 
     }
   }
 });
