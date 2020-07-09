@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>折叠控件实践</h1>
+        <h1>折叠控件</h1>
         <local-fold ref="localFold"></local-fold>
     </div>
 </template>
